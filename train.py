@@ -27,6 +27,18 @@ from mlflow import spark
 
 import boto3
 import os
+
+
+os.environ['AWS_ACCESS_KEY_ID']= 'AKIAIOSFODNN7EXAMPLE'
+os.environ['AWS_SECRET_ACCESS_KEY']='wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
+os.environ['MLFLOW_S3_ENDPOINT_URL']='http://minio.tan.lab'
+
+remote_server_uri = "http://mlflow.tan.lab"
+mlflow.set_tracking_uri(remote_server_uri)
+mlflow.set_experiment("git-gbt")
+
+
+
 sc= SparkContext.getOrCreate()
 sqlContext = SQLContext(sc)
 
@@ -108,17 +120,6 @@ va = VectorAssembler(inputCols = featuresCols, outputCol = "features")
 
 
 # In[8]:
-
-
-
-os.environ['AWS_ACCESS_KEY_ID']= 'AKIAIOSFODNN7EXAMPLE'
-os.environ['AWS_SECRET_ACCESS_KEY']='wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY'
-os.environ['MLFLOW_S3_ENDPOINT_URL']='http://minio.tan.lab'
-
-remote_server_uri = "http://mlflow.tan.lab"
-mlflow.set_tracking_uri(remote_server_uri)
-mlflow.set_experiment("git-gbt")
-
 
 with mlflow.start_run() as run:
     # https://github.com/mlflow/mlflow/issues/2141
