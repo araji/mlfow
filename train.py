@@ -20,7 +20,7 @@ from pyspark.ml.feature import VectorAssembler,VectorIndexer
 
 from pyspark.ml.classification import DecisionTreeClassifier
 from pyspark.ml.regression import GBTRegressor
-from pyspark.ml import Pipelinemlflow
+from pyspark.ml import Pipeline
 
 import mlflow
 from mlflow import spark
